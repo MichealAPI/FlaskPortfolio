@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Michele Portfolio</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" integrity="sha384-tViUnnbYAV00FLIhhi3v/dWt3Jxw4gZQcNoSCxCIFNJVCx7/D55/wXsrNIRANwdD" crossorigin="anonymous">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+</head>
+
+<body class="bg-radial-gradient d-flex flex-column min-vh-100">
+    
+    <nav class="navbar navbar-center">
+        <div class="navbar-brand">
+            <div class="page-title d-flex gap-1">
+                <i class="bi bi-caret-right-fill arrow"></i>
+                <p class="open-sans-bold">
+                    / 'pɔ:rtˌfoʊ.li.oʊ /
+                </p>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid flex-fill">
+        <div class="row h-100 d-md-flex justify-content-center align-items-center">
+            <div class="col-md-auto container-main">
+                
+                <div class="header">
+
+                    <div class="biography">
+                        
+                        <div class="title">
+                            <h1 class="open-sans-bold">Michele C.</h1>
+                        </div>
+
+                        <div class="subtitle">
+                            <p class="open-sans-regular">/ ə'baʊt mi: /</p>
+                        </div>
+
+                        <div class="description">
+                            <p class="open-sans-regular">
+                                Creative and passionate developer who loves
+                                 turning ideas into innovative web apps, game
+                                 plugins, and AI tools, all while aiming to make a 
+                                 positive impact on the world.
+                            </p>
+                        </div>
+
+                        <div class="projects-btn">
+                            <button class="open-sans-bold">Projects</button>
+                        </div>
+
+                    </div>
+
+                    <div class="logo">
+                        <img src="static/images/logo.png" alt="logo" draggable="false">
+                    </div>
+
+                </div>
+
+                <section class="article-section">
+                    
+                    <div class="title" id="articlesTitle">
+                        <h1 class="open-sans-bold">
+                            Featured Articles
+                        </h1>
+                    </div>
+
+                    <div class="articles" id="articles"></div>
+
+                </section>
+                
+                <div class="divider"></div>
+
+                <section class="calltoaction" id="actions"></section>
+
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const articles = [ {{ articles | tojson }} ];
+    </script>
+
+    <script src="{{ url_for('static', filename='js/article.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/action.js') }}"></script>
+</body>
+
+</html>

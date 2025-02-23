@@ -1,0 +1,61 @@
+/**
+.header .biography .projects-btn button {
+    background-color: transparent;
+    border: 3px solid var(--secondary);
+    color: var(--secondary);
+    border-radius: 6px;
+    width: 100%;
+    height: 37px;
+    font-size: 16px;
+    transition: .3s;
+}
+
+
+.header .biography .projects-btn button:hover {
+    color: var(--dark-blue);
+    border-color: var(--dark-blue);
+    scale: 1.01;
+    transition: .3s;
+}
+
+.header .biography .projects-btn button:active {
+    scale: 1.02;
+    transition: .3s;
+}
+**/
+
+.header .biography .projects-btn button {
+    border-radius: 6px;
+    width: 100%;
+    height: 37px;
+    font-size: 16px;
+    transition: .3s;
+
+    background-color: var(--dark-blue);
+    color: var(--secondary);
+    
+
+    border: 2px solid var(--secondary);
+    /** Outline glow gradient --dark-blue */
+    box-shadow: 0 0 10px var(--dark-blue);
+}
+
+
+.header .biography .projects-btn button:hover {
+    border-color: var(--dark-blue);
+    scale: 1.01;
+    transition: .5s;
+
+    opacity: .85;
+
+    color: var(--primary);
+}
+
+.header .biography .projects-btn button:active {
+    scale: 1.02;
+    transition: .3s;
+
+    background-color: var(--light-blue);
+    opacity: 1;
+}
+

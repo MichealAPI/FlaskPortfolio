@@ -1,0 +1,42 @@
+.header {
+    display: flex;
+    justify-content: center;
+    gap: 36px;
+    align-items: center
+}
+
+.header .biography {
+    display: flex;
+    flex-direction: column;
+    column-gap: 8px;
+    width: fit-content;
+}
+
+.header .biography .subtitle p {
+    color: var(--dark-gray);
+    font-size: 14px;
+    margin: 0;
+    user-select: none;
+}
+
+.header .biography .description p {
+    max-width: 431px;
+    color: var(--light-gray);
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+
+/* Mobile */
+@media (max-width: 768px) {
+
+    .header {
+        flex-direction: column;
+    }
+
+    .header .biography {
+        column-gap: 5px;
+        order: 1;
+    }
+
+}

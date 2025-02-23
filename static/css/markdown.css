@@ -1,0 +1,26 @@
+.markdown-section {
+    color: var(--secondary);
+    width: 100%;
+    margin-top: 14px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+
+    font-size: 18px;
+}
+
+.markdown-section h1 {
+    font-size: 48px;
+}
+
+.markdown-section h2 {
+    font-size: 36px;
+}
+
+.markdown-section h3 {
+    font-size: 24px;
+}
+
+.markdown-section h4 {
+    font-size: 18px;
+}
+

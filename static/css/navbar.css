@@ -1,0 +1,32 @@
+.navbar-brand .page-title p {
+    font-size: 16px;
+    color: var(--secondary);
+    margin: 0;
+}
+
+.navbar-brand .page-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: 23px;
+}
+
+.navbar-brand .page-title i.arrow {
+    color: var(--dark-gray);
+    font-size: 8px;
+}
+
+.navbar-brand .page-title i.arrow-back {
+    color: var(--secondary);
+    font-size: 21px;
+}
+
+/* On devices smaller than Mobile */
+@media (max-width: 768px) {
+
+    .navbar-center {
+        display: flex;
+        justify-content: center;
+    }
+
+}

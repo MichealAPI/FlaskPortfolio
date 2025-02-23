@@ -1,0 +1,22 @@
+.logo {
+    border-radius: 50%;
+    text-align: center;
+}
+
+.logo img {
+    width: 196px;
+    height: 196px;
+    user-select: none;
+}
+
+/** Mobile **/
+@media (max-width: 768px) {
+    .logo img {
+        width: 180px;
+        height: 180px;
+    }
+
+    .logo {
+        margin-top: 70px;
+    }
+}
