@@ -86,6 +86,6 @@ def check_cache() -> None:
 def parse_json(data):
     return json.loads(json_util.dumps(data))
 
-# WSGI entry point
+
 if __name__ != '__main__':
     application = app
