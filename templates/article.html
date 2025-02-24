@@ -36,7 +36,13 @@
                 
                 <div class="banner" style="background-image: url({{ article_document['background-image'] | string | safe }})">
                     <div class="content">
-                        <i class="love bi bi-balloon-heart-fill"></i>
+                        <div class="wrapper">
+                            <p class="like-counter" data-article-id="{{ article_document['article_id'] }}"></p>
+
+                            <a href="#" class="text-decoration-none like-btn" data-article-id="{{ article_document['article_id'] }}">
+                                <i class="love bi bi-heart-fill"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
 
@@ -52,6 +58,7 @@
         const markdownSection = document.querySelector('.markdown-section');
         const content = `{{ article_document['content'] | string | safe }}`;
         markdownSection.innerHTML = marked.parse(content);
-     </script>
+    </script>
+    <script src="{{ url_for('static', filename='js/like.js') }}"></script>
 </body>
 </html>

@@ -14,14 +14,31 @@
 
 .banner .content {
     width: 100%;
-    z-index: 1;
+    z-index: 10;
 }
 
-.banner .content i.love {
-
+.banner .content .wrapper {
     position: absolute;
     bottom: 20px;
     right: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+}
+
+.banner .content .wrapper .like-counter {
+    margin: 0;
+    color: var(--secondary);
+    font-family: "Open Sans", sans-serif;
+    user-select: none;
+
+    transition: .3s;
+}
+
+.banner .content .wrapper i.love {
 
     color: var(--secondary);
     font-size: 24px;

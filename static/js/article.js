@@ -35,12 +35,12 @@ articles.forEach(article => {
                                 <div class="article-actions">
                                     <div class="heart">
                                         <div class="heart-number">
-                                            <p>${formatNumber(article.likes)}</p>
+                                            <p class="like-counter" data-article-id="${article.article_id}">${formatNumber(article.likes)}</p>
                                         </div>
                                         
-                                        <div class="heart-icon">
+                                        <a class="heart-icon like-btn text-decoration-none d-flex align-items-center" data-article-id="${article.article_id}">
                                             <i class="bi bi-heart-fill"></i>
-                                        </div>
+                                        </a>
                                     </div>
 
                                     <div class="redirect-btn">

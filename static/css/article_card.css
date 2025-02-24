@@ -68,6 +68,12 @@
     font-size: 14px;
     user-select: none;
     margin: 0;
+    transition: .3s;
+}
+
+.article-section .articles .article .wrapper .article-actions .heart .heart-icon i:hover {
+    scale: 1.1;
+    transition: .3s;
 }
 
 /** Mobile **/

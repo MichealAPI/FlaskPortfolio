@@ -50,7 +50,7 @@
                                 Creative and passionate developer who loves
                                  turning ideas into innovative web apps, game
                                  plugins, and AI tools, all while aiming to make a 
-                                 positive impact on the world.
+                                  positive impact on the world.
                             </p>
                         </div>
 
@@ -61,7 +61,7 @@
                     </div>
 
                     <div class="logo">
-                        <img src="static/images/logo.png" alt="logo" draggable="false">
+                        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="logo" draggable="false">
                     </div>
 
                 </div>
@@ -93,6 +93,7 @@
 
     <script src="{{ url_for('static', filename='js/article.js') }}"></script>
     <script src="{{ url_for('static', filename='js/action.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/like.js') }}"></script>
 </body>
 
 </html>

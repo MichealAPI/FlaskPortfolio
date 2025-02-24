@@ -1,5 +1,5 @@
 import json
-import sys
+import os
 import time
 
 from flask import Flask, render_template
@@ -7,7 +7,7 @@ import pymongo  # Import the PyMongo library
 from bson import json_util
 
 app = Flask(__name__)
-mongo_client = pymongo.MongoClient('mongodb://localhost:27017/')  # Connect to the MongoDB server
+mongo_client = pymongo.MongoClient(os.getenv('MONGO_URI'))  # Connect to the MongoDB server
 database = mongo_client['blog']  # Get the database
 
 cached_articles = []  # Cache the articles in memory
@@ -40,6 +40,30 @@ def article(identifier):
     return render_template('article.html', article_document=article_document)
 
 
+# RESTful API to increase like count for a specific article
+@app.route('/article/<identifier>/like', methods=['POST'])
+def like_article(identifier):
+    check_cache()
+
+    response: int = 404
+    likes: int = 0
+
+    # Check if the article exists
+    for cached_article in cached_articles:
+
+        if cached_article['article_id'] == identifier:
+            # Update the heart count
+            cached_article['likes'] += 1
+            likes = cached_article['likes']
+
+            # Update the article in the database
+            database.articles.update_one({'article_id': identifier}, {'$inc': {'likes': 1}})
+            response = 200
+            break
+
+    return json.dumps({'likes': likes}), response
+
+
 def update_cache() -> None:
     global last_cached_time, cached_articles
 
@@ -55,11 +79,13 @@ def check_cache() -> None:
     global last_cached_time
 
     # Check if the cache is older than 5 minutes
-    if time.time() - last_cached_time > 0: # 5 * 60:
+    if time.time() - last_cached_time > 0:  # 5 * 60:
         update_cache()
+
 
 def parse_json(data):
     return json.loads(json_util.dumps(data))
 
-if __name__ == '__main__':
-    app.run()
+# WSGI entry point
+if __name__ != '__main__':
+    application = app
