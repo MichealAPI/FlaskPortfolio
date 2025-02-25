@@ -18,6 +18,7 @@ last_cached_time = 0  # Last time the cache was updated
 
 debug = False
 
+
 @app.route('/')
 def index():
     check_cache()
@@ -56,16 +57,19 @@ def like_article(identifier):
     for cached_article in cached_articles:
 
         if cached_article['article_id'] == identifier:
-            # Update the heart count
-            cached_article['likes'] += 1
-            likes = cached_article['likes']
 
             # Update the article in the database
             database.articles.update_one({'article_id': identifier}, {'$inc': {'likes': 1}})
+
+            # Update the cache
+            likes: int = database.articles.find_one({'article_id': identifier})['likes']
+            cached_article['likes'] = likes
+
             response = 200
             break
 
     return json.dumps({'likes': likes}), response
+
 
 @app.route('/upsert', methods=['POST'])
 @app.route('/upsert/<identifier>', methods=['POST'])
@@ -116,6 +120,7 @@ def check_cache() -> None:
 
 def parse_json(data):
     return json.loads(json_util.dumps(data))
+
 
 if __name__ != '__main__':
     application = app
