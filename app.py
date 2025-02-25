@@ -1,10 +1,13 @@
 import json
 import os
 import time
+import uuid
+from urllib.request import Request
 
 from flask import Flask, render_template
 import pymongo  # Import the PyMongo library
 from bson import json_util
+import article_helper
 
 app = Flask(__name__)
 mongo_client = pymongo.MongoClient(os.getenv('MONGO_URI'))  # Connect to the MongoDB server
@@ -13,6 +16,7 @@ database = mongo_client['blog']  # Get the database
 cached_articles = []  # Cache the articles in memory
 last_cached_time = 0  # Last time the cache was updated
 
+debug = False
 
 @app.route('/')
 def index():
@@ -63,6 +67,28 @@ def like_article(identifier):
 
     return json.dumps({'likes': likes}), response
 
+@app.route('/upsert', methods=['POST'])
+@app.route('/upsert/<identifier>', methods=['POST'])
+def update_article(request, identifier: str = None):
+    # Check credentials
+    if not article_helper.check_credentials(request):
+        return 'Unauthorized', 401
+
+    # Get the article content from "content" in the request params
+    article_content = request.args.get('content')
+    sanitized_content = article_helper.sanitize_markdown(article_content)
+
+    # Obtain identifier
+    if identifier is None:
+        # Random UUID
+        identifier = uuid.uuid4().hex
+
+    if article_content is None:
+        return 'No content provided', 400
+
+    # Upsert the article
+    database.articles.update_one({'article_id': identifier}, {'$set': {'content': sanitized_content}}, upsert=True)
+
 
 def update_cache() -> None:
     global last_cached_time, cached_articles
@@ -78,14 +104,20 @@ def update_cache() -> None:
 def check_cache() -> None:
     global last_cached_time
 
-    # Check if the cache is older than 5 minutes
-    if time.time() - last_cached_time > 0:  # 5 * 60:
+    if debug:
+        # Debug mode, always update the cache
+        update_cache()
+        return
+
+    # Check if the cache is older than 3 minutes
+    if time.time() - last_cached_time > 180:  # 3 * 60:
         update_cache()
 
 
 def parse_json(data):
     return json.loads(json_util.dumps(data))
 
-
 if __name__ != '__main__':
     application = app
+else:
+    debug = True
