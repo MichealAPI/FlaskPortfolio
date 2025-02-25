@@ -55,7 +55,7 @@
                         </div>
 
                         <div class="projects-btn">
-                            <button class="open-sans-bold">Projects</button>
+                            <button class="open-sans-bold" id="projectsBtn">Projects</button>
                         </div>
 
                     </div>
@@ -88,7 +88,14 @@
     </div>
 
     <script>
-        const articles = [ {{ articles | tojson }} ];
+        const articles = [ {{ articles | tojson }} ][0];
+        const projectsBtn = document.getElementById('projectsBtn');
+
+        projectsBtn.addEventListener('click', () => {
+            // Temporary patch to redirect to GitHub
+            window.open('https://github.com/MichealAPI', '_blank');
+        });
+
     </script>
 
     <script src="{{ url_for('static', filename='js/article.js') }}"></script>

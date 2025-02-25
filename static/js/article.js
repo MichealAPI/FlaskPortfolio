@@ -23,8 +23,6 @@ const articleRelativeEndpoint = '/article/';
 ]; */
 
 articles.forEach(article => {
-    article = article[0];
-
     articlesContainer.innerHTML += `
                           <div class="article">
                             <div class="wrapper">

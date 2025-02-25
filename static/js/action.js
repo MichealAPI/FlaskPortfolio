@@ -19,17 +19,17 @@ const actionsWrapper = document.querySelector("#actions")
 const actions = [
     {
         id: 1,
-        url: "#",
+        url: "https://github.com/MichealAPI",
         title: "Github"
     },
     {
         id: 2,
-        url: "#",
+        url: "https://discord.com/users/350160924310634516",
         title: "Discord"
     },
     {
         id: 3,
-        url: "#",
+        url: "mailto:michele@mikeslab.it",
         title: "Mail"
     },
 ]
@@ -37,7 +37,7 @@ const actions = [
 
 actions.forEach(action => {
     actionsWrapper.innerHTML += `
-                    <a href="${action.url}" class="action">
+                    <a href="${action.url}" class="action" target="_blank">
                         <div class="action-text">
                             <p class="open-sans-regular">
                                 ${action.title}

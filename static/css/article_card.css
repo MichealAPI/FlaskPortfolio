@@ -45,7 +45,7 @@
 
 .article-section .articles .article .wrapper .article-actions .redirect-btn a {
     color: var(--dark-gray);
-    font-size: 14px;
+    font-size: 16px;
     text-decoration: none;
     user-select: none;
 }
