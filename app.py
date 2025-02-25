@@ -4,7 +4,7 @@ import time
 import uuid
 from urllib.request import Request
 
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import pymongo  # Import the PyMongo library
 from bson import json_util
 import article_helper
@@ -69,13 +69,13 @@ def like_article(identifier):
 
 @app.route('/upsert', methods=['POST'])
 @app.route('/upsert/<identifier>', methods=['POST'])
-def update_article(request, identifier: str = None):
+def update_article(identifier: str = None):
     # Check credentials
     if not article_helper.check_credentials(request):
         return 'Unauthorized', 401
 
     # Get the article content from "content" in the request params
-    article_content = request.args.get('content')
+    article_content = request.get_json()['content']
     sanitized_content = article_helper.sanitize_markdown(article_content)
 
     # Obtain identifier
@@ -121,3 +121,4 @@ if __name__ != '__main__':
     application = app
 else:
     debug = True
+    app.run(debug=debug)
