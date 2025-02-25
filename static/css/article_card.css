@@ -84,7 +84,7 @@
     }
 
     .article-section {
-        max-width: 431px;
+        width: 431px;
     }
 
     .article-section .articles {
