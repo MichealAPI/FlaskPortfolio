@@ -76,6 +76,10 @@
     transition: .3s;
 }
 
+.article-section {
+    width: 100%;
+}
+
 /** Mobile **/
 @media (max-width: 768px) {
 
@@ -84,7 +88,7 @@
     }
 
     .article-section {
-        width: 431px;
+        max-width: 431px;
     }
 
     .article-section .articles {
